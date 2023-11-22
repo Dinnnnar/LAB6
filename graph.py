@@ -59,6 +59,19 @@ class Graph(Generic[T]):
             edges = self.vertexes[vertex]
             edges.for_each(lambda x: func(x))
 
+    def amount_edges(self) -> int:
+        count: int = 0
+        for _, edges in self.vertexes.items():
+            count += edges.size()
+
+        if self.is_not_directed:
+            count //= 2
+
+        return count
+
+    def amount_vertexes(self) -> int:
+        return len(self.vertexes)
+
     def print_all_edges(self) -> None:
         def print_edge(edge: Edge[T]) -> None:
             print(f"Edge(V1: {edge.start_edge}, V2: {edge.finish_edge}, Weight: {edge.weight})")
