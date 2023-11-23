@@ -44,7 +44,8 @@ if __name__ == '__main__':
         Edge("D", "I"),
         Edge("D", "J"),
         Edge("E", "K"),
-        Edge("E", "L"),
+        Edge("K", "I"),
+        Edge("I", "S"),
     ]
 
     graph: Graph[str] = Graph[str]()
@@ -54,21 +55,21 @@ if __name__ == '__main__':
 
     def dfs_walk(vertex: str) -> bool:
         print(vertex + " ", end='')
-        return vertex == "K"
+        return vertex == "S"
 
     dfs(graph, "A", dfs_walk)
     path: list[str] = []
 
     def dfs_walk_with_path(vertex: str) -> bool:
         path.append(vertex)
-        return vertex == "K"
+        return vertex == "S"
 
     dfs(graph, "A", dfs_walk_with_path)
     print()
 
     path.reverse()
-    min_path: list[str] = ["K"]
-    find: str = "K"
+    min_path: list[str] = ["S"]
+    find: str = "S"
     for vertex in path:
         if graph.vertexes[vertex].contains(AdjacentEdge[str](find)):
             min_path.append(vertex)

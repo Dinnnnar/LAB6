@@ -39,7 +39,8 @@ if __name__ == '__main__':
         Edge("D", "I"),
         Edge("D", "J"),
         Edge("E", "K"),
-        Edge("E", "L"),
+        Edge("K", "I"),
+        Edge("I", "S"),
     ]
 
     graph: Graph[str] = Graph[str]()
@@ -49,7 +50,7 @@ if __name__ == '__main__':
 
     def bfs_walk(vertex: str) -> bool:
         print(vertex + " ", end='')
-        return vertex == "K"
+        return vertex == "S"
 
     bfs(graph, "A", bfs_walk)
     print()
@@ -57,13 +58,13 @@ if __name__ == '__main__':
 
     def bfs_walk_with_path(vertex: str) -> bool:
         path.append(vertex)
-        return vertex == "K"
+        return vertex == "S"
 
     bfs(graph, "A", bfs_walk_with_path)
 
     path.reverse()
-    min_path: list[str] = ["K"]
-    find: str = "K"
+    min_path: list[str] = ["S"]
+    find: str = "S"
     for vertex in path:
         if graph.vertexes[vertex].contains(AdjacentEdge[str](find)):
             min_path.append(vertex)

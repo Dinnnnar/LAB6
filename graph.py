@@ -84,6 +84,14 @@ class Graph(Generic[T]):
 
         self.for_each_vertex(print_vertex)
 
+    def __str__(self) -> str:
+        result = "Graph: "
+        for vertex, edges in self.vertexes.items():
+            result += f"Vertex: {vertex} "
+        return result
+
+
+
 
 if __name__ == '__main__':
     G = Graph()
@@ -96,4 +104,5 @@ if __name__ == '__main__':
 
     with open("graph", "rb") as file:
         load_graph = pickle.load(file)
+    print(load_graph)
     load_graph.print_all_edges()
